@@ -3,9 +3,34 @@ import java.math.*;
 import static java.lang.Math.*;
 
 public class RGBTree {
+	int mem[][][][] = new int[1<<13][5][5][5];
+	String[] graph;
+	boolean fun(int mask,int r,int g,int b)
+	{
+		if(mem[mask][r][g][b] != 1)
+			return mem[mask][r][g][b] == 1;
+		else
+		{
+			int n = graph.length - 1;
+			if(r== n/3 && g == n/3 && b == n/3)
+			{
+				mem[mask][r][g][b] = 1;
+				return true;
+			}
+			boolean res = false;
+			for(int i= 0 ;i<=n;i++)
+			{
+				if((mask & (1<<i)) != 0)
+				{
 
+				}
+			}
+		}
+	}
 	public String exist(String[] G) {
-		return null;
+		Arrays.fill(mem,-1);
+		graph = G;
+		return fun(1,0,0,0);
 	}
 
 }
