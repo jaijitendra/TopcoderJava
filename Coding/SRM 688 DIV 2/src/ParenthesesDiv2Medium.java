@@ -15,8 +15,16 @@ public class ParenthesesDiv2Medium {
 				curscore--;
 			if(curscore<0)
 			{
-				curscore=0;
+				curscore=1;
 				resultList.add(i);
+			}
+		}
+		for(int i=0,pointer= s.length() - 1 ;i<curscore/2;pointer--)
+		{
+			if(s.charAt(pointer) == '(')
+			{
+				resultList.add(pointer);
+				i++;
 			}
 		}
 		int[] result = new int[resultList.size()];

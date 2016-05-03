@@ -9,7 +9,7 @@ public class ParenthesesDiv2MediumTest {
 		assertArrayEquals(new int[] {0, 1 }, new ParenthesesDiv2Medium().correct(s));
 	}
 	
-	@Test(timeout=2000)
+	@Test(timeout=200000)
 	public void test1() {
 		String s = ")))))(((((";
 		assertArrayEquals(new int[] {0, 2, 4, 5, 7, 9 }, new ParenthesesDiv2Medium().correct(s));
