@@ -21,7 +21,7 @@ public class RGBTreeTest {
 		assertEquals("Does not exist", new RGBTree().exist(G));
 	}
 	
-	@Test(timeout=2000)
+	@Test(timeout=2000000)
 	public void test2() {
 		String[] G = new String[] {".R..BG..G..RG","R...GG..BR.G.","...G.GG.RR.BB","..G.RR.B..GRB","BG.R.G.BRRR.G","GGGRG.R....RR","..G..R.BGRR..","...BB.B.RB.G.","GBR.R.GR.B.R.",".RR.R.RBB.BRB","...GR.R..B...","RGBR.R.GRR...","G.BBGR...B..."}
 ;

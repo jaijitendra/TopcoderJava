@@ -3,18 +3,20 @@ import java.math.*;
 import static java.lang.Math.*;
 
 public class RGBTree {
-	int mem[][][][] = new int[1<<13][5][5][5];
+	boolean mem[][][][] = new boolean[1<<13][5][5][5];
+	boolean visited[][][][] = new boolean[1<<13][5][5][5];
 	String[] graph;
 	boolean fun(int mask,int r,int g,int b)
 	{
-		if(mem[mask][r][g][b] != 1)
-			return mem[mask][r][g][b] == 1;
+		if(visited[mask][r][g][b])
+			return mem[mask][r][g][b];
 		else
 		{
 			int n = graph.length - 1;
 			if(r== n/3 && g == n/3 && b == n/3)
 			{
-				mem[mask][r][g][b] = 1;
+				mem[mask ][r][g][b] = true;
+				visited[mask][r][g][b] = true;
 				return true;
 			}
 			boolean res = false;
@@ -22,15 +24,45 @@ public class RGBTree {
 			{
 				if((mask & (1<<i)) != 0)
 				{
-
+					for(int j=0;j<=n;j++)
+					{
+						if((mask & (1<<j)) == 0 && graph[i].charAt(j) != '.')
+						{
+							int rr = r,gg = g,bb = b;
+							switch (graph[i].charAt(j))
+							{
+								case 'R' :
+									rr +=1;
+									break;
+								case 'G' :
+									gg +=1;
+									break;
+								case 'B' :
+									bb +=1;
+									break;
+							}
+							if(rr<=n/3 && gg <=n/3 && bb <=n/3 )
+							res = res || fun(mask | 1<< j, rr,gg,bb );
+						}
+					}
 				}
 			}
+			visited[mask][r][g][b] = true;
+			mem[mask][r][g][b] = res;
 		}
+		return mem[mask][r][g][b];
 	}
+
 	public String exist(String[] G) {
-		Arrays.fill(mem,-1);
+		Arrays.fill(visited,Boolean.FALSE);
+		Arrays.fill(mem,Boolean.FALSE);
 		graph = G;
-		return fun(1,0,0,0);
+		if(fun(1,0,0,0))
+		{
+			return  "Exist";
+		}
+		else
+			return  "Does not exist";
 	}
 
 }
